@@ -208,6 +208,7 @@ def updated_possible2(order,constraint,wiz1,wiz2):
 def strategy1(num_wizards,wizards,constraints):
 
     possible_order = []
+    #remain_constraints = sort_freq(constraints[:])
     remain_constraints = constraints[:]
 
     counter = 1000
@@ -292,6 +293,36 @@ def find_related(order,constraints):
     if candidate == []:
         return []
     return sorted(candidate,key=operator.itemgetter(2),reverse=True)[0]
+    
+def sort_freq(constraints):
+    freq = {}
+    for constraint in constraints:
+        frozen_constraint = frozenset(constraint)
+        wiz_a = constraint[0]
+        wiz_b = constraint[1]
+        wiz_c = constraint[2]
+        freq[frozen_constraint] = 0
+        for compare in constraints:
+            if compare != constraint:
+                sim = 0
+                for i in range(0,3):
+                    var = compare[i]
+                    if var == wiz_a or var == wiz_b or var == wiz_c:
+                        sim += 1
+                if sim >= 2:
+                    freq[frozen_constraint] += 1
+                    
+    ready = sorted(freq.keys(), reverse=True)
+    
+    
+    
+    
+    print(ready)
+    sol = []
+    for key in ready.keys():
+        
+        sol.append(key)
+    return sol
 
 def variation(constraint):
 

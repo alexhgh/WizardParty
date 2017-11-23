@@ -24,7 +24,7 @@ def solve(num_wizards, num_constraints, wizards, constraints):
     opt,name = utility.find_optimizable(constraints)
     print("optimizable wizards: ", len(name))
     print("related constraints: ", len(opt))
-    #output = utility.strategy1(num_wizards,wizards,constraints)
+    output = utility.strategy1(num_wizards,wizards,constraints)
     order = [wizards[o] for o in output]
 
     return order
